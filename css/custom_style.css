@@ -1,0 +1,199 @@
+*::-moz-selection {
+    background: none repeat scroll 0 0 #E9AC44;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+html,body{height:100%;}
+body {
+    padding-top: 60px;
+}
+.header_wrap {
+    height: auto;
+    background-color: #1e1e1e;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.header {
+    height: 60px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.containt {
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom:10px;
+}
+.lsmargin-bottom{
+	margin-bottom:10px;
+}
+.margin-left{
+	margin-left:10px;
+}
+
+#back-top {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+}
+.list-group-item {
+    word-wrap: break-word;
+}
+#back-top a {
+	width: 108px;
+	display: block;
+	text-align: center;
+	font: 11px/100% Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #bbb;
+    outline:0;
+
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+
+#back-top a:hover {
+	color: #000;
+    outline:0;
+}
+
+/* arrow icon (span tag) */
+#back-top span {
+	width: 108px;
+	height: 108px;
+	display: block;
+	margin-bottom: 7px;
+	background: #ddd url(../images/up-arrow.png) no-repeat center center;
+
+	/* rounded corners */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+#back-top a:hover span {
+	background-color: #777;
+}
+
+div [id*="errorMessage-"], div [id*="successMessage-"] {
+    display: none;
+}
+.align_center {
+    text-align: center;
+}
+
+.links {
+    padding-top: 10px;
+}
+.sold{
+	color:#F30;
+	font-weight:bold;
+}
+.stock{
+	color:#090;
+	font-weight:bold;
+}
+.panel-default >.panel-heading{
+	background-color:#d14836;
+}
+.panel-default >.panel-heading-working{
+	background-color:#00806e;
+}
+.panel-default >.panel-heading-partworking{
+	background-color:#b26d01;
+}
+.panel-title > .row > a{
+	color:#FFF;
+}
+.pointer {
+    cursor: pointer;
+}
+.panel-title > .row > .col-lg-2 > code{
+	cursor:pointer;
+}
+.panel-title > .row > .left_status > .col-lg-1{
+	cursor:default;
+}
+.panel-title > .row > .left_status > .col-lg-2 > .badge{
+	background-color:#ffffff;
+	color:#333;
+}
+.panel-title > .row > .col-lg-3 > a{
+	color:#fff;
+}
+.panel-title > .row{
+	color:#fff;
+}
+.bs-footer {
+    padding-top: 20px;
+	text-align:center;
+	text-shadow:#FFF 1px;
+    color: rgb(119, 119, 119);
+    border-top: 1px solid rgb(229, 229, 229);
+}
+.icon-size{
+	font-size:15px;
+}
+/* Sticky footer styles
+      -------------------------------------------------- */
+
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 60px;
+}
+
+#footer {
+    font-size: 11px;
+    color: #e5e5e5;
+	background-color:rgba(102,102,102,.5);
+}
+
+    #footer a {
+        color: #ffffff;
+    }
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 480px) {
+    /*            .containt {
+                overflow: hidden;
+                margin: 0 auto;
+                width: auto;
+                padding-top:0px;
+            }*/
+    .img-resize-small {
+        width: 50%;
+    }
+	.icon-size{
+		font-size:35px;}
+}
+@media (max-width: 768px){
+	.margin-bottom {
+    	margin-bottom: 15px;
+	}
+		.icon-size{
+		font-size:35px;}
+
+}
+@media (max-width: 992px) {
+	.margin-bottom {
+    	margin-bottom: 15px;
+	}
+}

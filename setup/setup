@@ -1,0 +1,124 @@
+#!/bin/bash
+
+selection=
+dbUsername="root"
+dbPassword="embarc"
+dbName="embarcUtilities"
+
+#exit neatly in any situation - except for SIGKILL from outer space
+trap clean_exit SIGHUP SIGINT SIGTERM
+
+usage()
+{
+echo "usage: setup [[-h|-b|-r]]"
+}
+
+prompt_credentials()
+{
+#prompt for mysql username and password
+username=""
+password=""
+echo -n "Please enter MySQL username:"
+read username
+
+#if username is not entered use default username
+if [ "$username" = "" ]; then
+echo "No username provided, assuming user $dbUsername."
+else
+dbUsername="$username"
+fi
+
+echo ""
+
+echo -n "Please enter MySQL password:"
+#reading password in silent mode, so that password characters are not echoed back on screen
+read -s password
+echo ""
+
+#if password is not entered use default password
+if [ "$password" = "" ]; then
+echo "No password provided, using default password."
+else
+dbPassword="$password"
+fi
+
+echo ""
+}
+
+#restore database
+restore_database()
+{
+echo "Creating database..."
+sudo echo "CREATE DATABASE IF NOT EXISTS $dbName;" > db_create.sql
+
+#prompt for credentials
+prompt_credentials;
+
+#creating database
+$(mysql -u"$dbUsername" -p"$dbPassword" < db_create.sql)
+
+echo "Database created."
+
+if [ -f "embarcUtilities.sql" ]; then
+$(mysql -u"$dbUsername" -p"$dbPassword" "$dbName" < embarcUtilities.sql)
+echo "Database backup restored."
+else
+echo "File not found: embarcUtilities.sql"
+fi
+}
+
+#backup database
+backup_database()
+{
+if [ -f "embarcUtilities.sql" ]; then
+sudo mv embarcUtilities.sql embarcUtilities.old.sql
+fi
+
+#prompt for credentials
+prompt_credentials;
+
+$(mysqldump -u"$dbUsername" -p"$dbPassword" "$dbName" > embarcUtilities.sql)
+echo "Database backup complete."
+}
+
+clean_exit()
+{
+#remove file created by method restore_database
+if [ -f "db_create.sql" ]; then
+sudo rm -f db_create.sql
+fi
+
+#remove old backup file
+if [ -f "embarcUtilities.old.sql" ]; then
+sudo rm -f embarcUtilities.old.sql
+fi
+
+exit 0
+}
+
+while [ "$1" != "" ]; do
+case $1 in
+-h | --help ) usage; exit;;
+-r | --restore ) restore_database; clean_exit;;
+-b | --backup ) backup_database; clean_exit;
+esac
+shift
+done
+
+until [ "$selection" = "0" ]; do
+echo "
+1 - Restore Database
+2 - Backup Database
+0 - Exit
+"
+echo -n "Enter Selection: "
+read selection
+echo ""
+
+case $selection in
+1 ) restore_database ;;
+2 ) backup_database ;;
+0 ) clean_exit ;;
+* ) echo "Invalid Input";
+esac
+done

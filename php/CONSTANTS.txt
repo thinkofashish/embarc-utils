@@ -1,0 +1,11 @@
+//Max. weight for document type packages - account 530706270
+MAX_DOC_530706270 3
+
+//Max. weight for Non-Document type packages - account 530706270
+MAX_NDOC_530706270 20
+
+//Max. weight for document type packages - account 530760685
+MAX_DOC_530760685 20
+
+//Max. weight for Non-Document type packages - account 530760685
+MAX_NDOC_530760685 20
